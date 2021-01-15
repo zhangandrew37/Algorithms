@@ -94,8 +94,8 @@ public class Main {
      * @throws IOException when there is a problem reading input or output
      */
     public static void main(String [] args) throws IOException{
-        Writer fileWriter = new FileWriter("/Users/AndrewZ/Desktop/School Work/ICS4U0/Algorithms/src/output.txt", false);
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("/Users/AndrewZ/Desktop/School Work/ICS4U0/Algorithms/src/input.txt"));
+        Writer fileWriter = new FileWriter("output.txt", false);
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("input.txt"));
         StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
         Employee [] employees = new Employee[50000];
         employees[0] = new Employee(Integer.parseInt(stringTokenizer.nextToken()), Integer.parseInt(stringTokenizer.nextToken()));
