@@ -18,7 +18,7 @@ public class generateRandom {
      * @throws IOException when there is a problem reading input or output
      */
     public static void main(String args[]) throws IOException {
-        Writer fileWriter = new FileWriter("/Users/AndrewZ/Desktop/School Work/ICS4U0/Algorithms/src/input.txt", false);
+        Writer fileWriter = new FileWriter("input.txt", false);
         int min = 1;
         int max = 100000;
         int min1 = 10000;
