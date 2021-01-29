@@ -35,7 +35,7 @@ public class palindromes {
      * @return the number of palindromes within the string
      */
     static int recursivePalindromes(String string){
-        return palindromeHelper(string, 0, string.length()-1);
+        return recursivePalindromeHelper(string, 0, string.length()-1);
     }
 
     /**
