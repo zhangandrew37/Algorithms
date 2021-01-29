@@ -29,12 +29,24 @@ public class palindromes {
     }
 
     /**
-     * This is the method that recursively calculates the number of palindromes within a string
+     * This calls a helper function to recursively calculate the number of palindromes within a string
      *
      * @param string This is the string
      * @return the number of palindromes within the string
      */
-    static int recursivePalindromes(String string, int pointerA, int pointerB){
+    static int recursivePalindromes(String string){
+        return palindromeHelper(string, 0, string.length()-1);
+    }
+
+    /**
+     * This is the method that recursively calculates the number of palindromes within a string
+     *
+     * @param string This is the string
+     * @param pointerA This stores the beginning index of the substring
+     * @param pointerB This stores the ending index of the substring
+     * @return the number of palindromes within the string
+     */
+    static int palindromeHelper(String string, int pointerA, int pointerB){
         boolean flag = false;
         String substring = string.substring(pointerA, pointerB+1);
         StringBuilder word = new StringBuilder(substring);
@@ -52,8 +64,8 @@ public class palindromes {
             if(flag) return 1; else return 0;
         }
 
-        if(flag) return recursivePalindromes(string, pointerA, pointerB) + 1;
-        else return recursivePalindromes(string, pointerA, pointerB);
+        if(flag) return palindromeHelper(string, pointerA, pointerB) + 1;
+        else return palindromeHelper(string, pointerA, pointerB);
     }
 
     /**
@@ -65,6 +77,6 @@ public class palindromes {
         Scanner sc = new Scanner(System.in);
         String string = sc.nextLine().toLowerCase();
         System.out.println(iterativePalindromes(string));
-        System.out.println(recursivePalindromes(string, 0, string.length()-1));
+        System.out.println(recursivePalindromes(string));
     }
 }
