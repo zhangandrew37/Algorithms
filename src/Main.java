@@ -17,16 +17,12 @@ public class Main {
      * @param employees This is the array that stores Employee IDs and salaries
      */
     static void bubbleSortId(Employee [] employees){
-        Employee temp = new Employee(-1,-1);
         for(int i=0; i<employees.length-1; i++){
             for(int j=0; j<employees.length-i-1; j++){
                 if(employees[j].getId() > employees[j+1].getId()){
-                    temp.setId(employees[j+1].getId());
-                    temp.setSalary(employees[j+1].getSalary());
-                    employees[j+1].setId(employees[j].getId());
-                    employees[j+1].setSalary(employees[j].getSalary());
-                    employees[j].setId(temp.getId());
-                    employees[j].setSalary(temp.getSalary());
+                    Employee temp = employees[j+1];
+                    employees[j+1] = employees[j];
+                    employees[j] = temp;
                 }
             }
         }
@@ -38,18 +34,14 @@ public class Main {
      * @param employees This is the array that stores Employee IDs and salaries
      */
     static void insertionSortSalary(Employee [] employees){
-        Employee temp = new Employee(-1,-1);
         for(int i=1; i<employees.length; i++){
-            temp.setId(employees[i].getId());
-            temp.setSalary(employees[i].getSalary());
+            Employee temp = employees[i];
             int j = i;
             while(j>0 && temp.getSalary()<employees[j-1].getSalary()){
-                employees[j].setId(employees[j-1].getId());
-                employees[j].setSalary(employees[j-1].getSalary());
+                employees[j] = employees[j-1];
                 j-= 1;
             }
-            employees[j].setId(temp.getId());
-            employees[j].setSalary(temp.getSalary());
+            employees[j] = temp;
         }
     }
 
@@ -58,11 +50,11 @@ public class Main {
      *
      * @param employees This is the array that stores Employee IDs and salaries
      * @param salary This is the salary of the Employee
-     * @return the ID of the Employee as an int| -1 if not found in employees
+     * @return the index of the Employee as an int| -1 if not found in employees
      */
     static int linearSearchId(Employee [] employees, int salary){
-        for(Employee e: employees){
-            if(e.getSalary() == salary) return e.getId();
+        for(int i=0; i<employees.length; i++){
+            if(employees[i].getSalary() == salary) return i;
         }
         return -1;
     }
@@ -94,8 +86,8 @@ public class Main {
      * @throws IOException when there is a problem reading input or output
      */
     public static void main(String [] args) throws IOException{
-        Writer fileWriter = new FileWriter("output.txt", false);
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("input.txt"));
+        Writer fileWriter = new FileWriter("/Users/AndrewZ/Desktop/School Work/ICS4U0/Algorithms/src/output.txt", false);
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("/Users/AndrewZ/Desktop/School Work/ICS4U0/Algorithms/src/input.txt"));
         StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
         Employee [] employees = new Employee[50000];
         employees[0] = new Employee(Integer.parseInt(stringTokenizer.nextToken()), Integer.parseInt(stringTokenizer.nextToken()));
@@ -105,7 +97,7 @@ public class Main {
         }
 
         //displaying sorted array of object
-        bubbleSortId(employees);
+        bubbleSortId(employees);;
         fileWriter.write("===================================================================================" + "\n");
         fileWriter.write("Employees sorted by ID (followed by their salary)" + "\n");
         fileWriter.write("===================================================================================" + "\n");
