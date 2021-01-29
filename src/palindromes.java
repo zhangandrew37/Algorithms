@@ -46,7 +46,7 @@ public class palindromes {
      * @param pointerB This stores the ending index of the substring
      * @return the number of palindromes within the string
      */
-    static int palindromeHelper(String string, int pointerA, int pointerB){
+    static int recursivePalindromeHelper(String string, int pointerA, int pointerB){
         boolean flag = false;
         String substring = string.substring(pointerA, pointerB+1);
         StringBuilder word = new StringBuilder(substring);
@@ -64,8 +64,8 @@ public class palindromes {
             if(flag) return 1; else return 0;
         }
 
-        if(flag) return palindromeHelper(string, pointerA, pointerB) + 1;
-        else return palindromeHelper(string, pointerA, pointerB);
+        if(flag) return recursivePalindromeHelper(string, pointerA, pointerB) + 1;
+        else return recursivePalindromeHelper(string, pointerA, pointerB);
     }
 
     /**
